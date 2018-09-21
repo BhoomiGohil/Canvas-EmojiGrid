@@ -2,4 +2,4 @@
 
 It is a Static Emojis created using HTML Canvas
 
-<img src=”Emojis.png”>
+<img src='Emojis.png'>
