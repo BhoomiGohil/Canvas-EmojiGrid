@@ -1,27 +1,29 @@
-html{
-  box-sizing: border-box;
+html {
+    box-sizing: border-box;
 }
 
-* , *::after , *::before{
-    box-sizing:inherit;
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
 }
 
-body{
-    margin:0px;
+body {
+    margin: 0px;
 }
 
-header{
-    color:#ffbe00;
-    text-align:center;
+header {
+    color: #ffbe00;
+    text-align: center;
 }
 
-article{
-    width:100%;
-    height:100%;
+article {
+    width: 100%;
+    height: 100%;
 }
 
-article .emo{
-    width:25%;
-    height:100%;
-    margin:auto;
+article .emo {
+    width: 500px;
+    height: 500px;
+    margin: auto;
 }
