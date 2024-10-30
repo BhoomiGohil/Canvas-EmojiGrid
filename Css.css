@@ -23,7 +23,9 @@ article {
 }
 
 article .emo {
-    width: 500px;
-    height: 500px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     margin: auto;
 }

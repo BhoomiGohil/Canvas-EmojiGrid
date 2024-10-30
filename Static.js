@@ -1,562 +1,562 @@
 var cont = document.getElementById("emojis");
-var context = cont.getContext("2d");
+var ctx = cont.getContext("2d");
 
-context.fillStyle = "#615a5a";
-context.strokeStyle = "#615a5a";
-context.lineCap = "round";
-context.lineWidth = "3";
+var cols = 4;
+var rows = 4;
 
-function begin(context) {
-  context.beginPath();
+cont.width = rows * 100 - 10;
+cont.height = cols * 100 - 10;
+
+ctx.fillStyle = "#615a5a";
+ctx.strokeStyle = "#615a5a";
+ctx.lineCap = "round";
+ctx.lineWidth = "3";
+
+function begin(ctx) {
+  ctx.beginPath();
 }
 
-function close(context) {
-  context.closePath();
+function close(ctx) {
+  ctx.closePath();
 }
 
 //--------------------------------------------------------------First Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(45, 45, 40, 0, 7);
-context.stroke();
+ctx.arc(45, 45, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(29, 35, 5, 0, 7);
-context.fill();
+ctx.arc(29, 35, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(61, 35, 5, 0, 7);
-context.fill();
+ctx.arc(61, 35, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(45, 45, 25, 0.9, 2.3);
-context.stroke();
+ctx.arc(45, 45, 25, 0.9, 2.3);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Second Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(145, 45, 40, 0, 7);
-context.stroke();
+ctx.arc(145, 45, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(129, 35, 5, 0, 7);
-context.fill();
+ctx.arc(129, 35, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(161, 36, 5, 3, 6.5);
-context.stroke();
+ctx.arc(161, 36, 5, 3, 6.5);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(145, 45, 25, 0.9, 2.3);
-context.stroke();
+ctx.arc(145, 45, 25, 0.9, 2.3);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Third Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(245, 45, 40, 0, 7);
-context.stroke();
+ctx.arc(245, 45, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(229, 35, 5, 0, 7);
-context.fill();
+ctx.arc(229, 35, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(261, 35, 5, 0, 7);
-context.fill();
+ctx.arc(261, 35, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.moveTo(217, 46);
-context.lineTo(272, 46);
-context.stroke();
+ctx.moveTo(217, 46);
+ctx.lineTo(272, 46);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(245, 46, 28, 0, 3.1);
-context.stroke();
+ctx.arc(245, 46, 28, 0, 3.1);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Fourth Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(345, 45, 40, 0, 7);
-context.stroke();
+ctx.arc(345, 45, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(329, 36, 5, 3, 6.5);
-context.stroke();
+ctx.arc(329, 36, 5, 3, 6.5);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(361, 36, 5, 3, 6.5);
-context.stroke();
+ctx.arc(361, 36, 5, 3, 6.5);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(345, 45, 25, 0.9, 2.3);
-context.stroke();
+ctx.arc(345, 45, 25, 0.9, 2.3);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Fifth Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(45, 145, 40, 0, 7);
-context.stroke();
+ctx.arc(45, 145, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(29, 135, 5, 0, 7);
-context.fill();
+ctx.arc(29, 135, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(61, 135, 5, 0, 7);
-context.fill();
+ctx.arc(61, 135, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(45, 190, 25, 4.1, -0.9);
-context.stroke();
+ctx.arc(45, 190, 25, 4.1, -0.9);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Sixth Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(145, 145, 40, 0, 7);
-context.stroke();
+ctx.arc(145, 145, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(129, 135, 5, 0, 7);
-context.fill();
+ctx.arc(129, 135, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(161, 135, 5, 0, 7);
-context.fill();
+ctx.arc(161, 135, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.moveTo(129, 162);
-context.lineTo(161, 162);
-context.stroke();
+ctx.moveTo(129, 162);
+ctx.lineTo(161, 162);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Seventh Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(245, 145, 40, 0, 7);
-context.stroke();
+ctx.arc(245, 145, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(229, 134, 5, 0, 3);
-context.stroke();
+ctx.arc(229, 134, 5, 0, 3);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(261, 134, 5, 0, 3);
-context.stroke();
+ctx.arc(261, 134, 5, 0, 3);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(245, 190, 25, 4.1, -0.9);
-context.stroke();
+ctx.arc(245, 190, 25, 4.1, -0.9);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Eighth Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(345, 145, 40, 0, 7);
-context.stroke();
+ctx.arc(345, 145, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(329, 136, 5, 3, 6.5);
-context.stroke();
+ctx.arc(329, 136, 5, 3, 6.5);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(361, 136, 5, 3, 6.5);
-context.stroke();
+ctx.arc(361, 136, 5, 3, 6.5);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.moveTo(317, 146);
-context.lineTo(372, 146);
-context.stroke();
+ctx.moveTo(317, 146);
+ctx.lineTo(372, 146);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(345, 146, 28, 0, 3.1);
-context.stroke();
+ctx.arc(345, 146, 28, 0, 3.1);
+ctx.stroke();
 
 //--------------------------------------------------------------Ninth Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(45, 245, 40, 0, 7);
-context.stroke();
+ctx.arc(45, 245, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(29, 236, 5, 0, 7);
-context.fill();
+ctx.arc(29, 236, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(61, 237, 5, 3, 6.5);
-context.stroke();
+ctx.arc(61, 237, 5, 3, 6.5);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(45, 245, 25, 0.9, 2.3);
-context.stroke();
+ctx.arc(45, 245, 25, 0.9, 2.3);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.moveTo(37, 270);
-context.lineTo(37, 275);
-context.stroke();
+ctx.moveTo(37, 270);
+ctx.lineTo(37, 275);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.moveTo(52.9, 270);
-context.lineTo(52.9, 275);
-context.stroke();
+ctx.moveTo(52.9, 270);
+ctx.lineTo(52.9, 275);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(45, 275, 8, 0, 3);
-context.stroke();
+ctx.arc(45, 275, 8, 0, 3);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Tenth Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(145, 245, 40, 0, 7);
-context.stroke();
+ctx.arc(145, 245, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(129, 235, 5, 3, 6.5);
-context.stroke();
+ctx.arc(129, 235, 5, 3, 6.5);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(161, 236, 5, 3, 6.5);
-context.stroke();
+ctx.arc(161, 236, 5, 3, 6.5);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(145, 245, 25, 0.9, 2.3);
-context.stroke();
+ctx.arc(145, 245, 25, 0.9, 2.3);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(155, 268, 6, -0.5, 2.6);
-context.stroke();
+ctx.arc(155, 268, 6, -0.5, 2.6);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Eleventh Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(245, 245, 40, 0, 7);
-context.stroke();
+ctx.arc(245, 245, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(229, 236, 5, 3, 6.5);
-context.stroke();
+ctx.arc(229, 236, 5, 3, 6.5);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(261, 236, 5, 3, 6.5);
-context.stroke();
+ctx.arc(261, 236, 5, 3, 6.5);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.moveTo(217, 246);
-context.lineTo(272, 246);
-context.stroke();
+ctx.moveTo(217, 246);
+ctx.lineTo(272, 246);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(245, 246, 28, 0, 3.1);
-context.stroke();
+ctx.arc(245, 246, 28, 0, 3.1);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.moveTo(223, 240);
-context.lineTo(208, 245);
-context.stroke();
+ctx.moveTo(223, 240);
+ctx.lineTo(208, 245);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.moveTo(223, 240);
-context.lineTo(214, 255);
-context.stroke();
+ctx.moveTo(223, 240);
+ctx.lineTo(214, 255);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.moveTo(267, 240);
-context.lineTo(282, 245);
-context.stroke();
+ctx.moveTo(267, 240);
+ctx.lineTo(282, 245);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.moveTo(267, 240);
-context.lineTo(276, 255);
-context.stroke();
+ctx.moveTo(267, 240);
+ctx.lineTo(276, 255);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(210, 251, 6, 1, 4);
-context.stroke();
+ctx.arc(210, 251, 6, 1, 4);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(280, 251, 6, -1, 2);
-context.stroke();
+ctx.arc(280, 251, 6, -1, 2);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Twelfth Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(345, 245, 40, 0, 7);
-context.stroke();
+ctx.arc(345, 245, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(329, 235, 5, 0, 7);
-context.fill();
+ctx.arc(329, 235, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(361, 235, 5, 0, 7);
-context.fill();
+ctx.arc(361, 235, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(345, 260, 10, 0, 8);
-context.stroke();
+ctx.arc(345, 260, 10, 0, 8);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Thirteenth Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(45, 345, 40, 0, 7);
-context.stroke();
+ctx.arc(45, 345, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(29, 335, 5, 0.5, 3.6);
-context.fill();
+ctx.arc(29, 335, 5, 0.5, 3.6);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(61, 335, 5, 6, 2.8);
-context.fill();
+ctx.arc(61, 335, 5, 6, 2.8);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(45, 390, 25, 4.1, -0.9);
-context.stroke();
+ctx.arc(45, 390, 25, 4.1, -0.9);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Fourteenth Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(145, 345, 40, 0, 7);
-context.stroke();
+ctx.arc(145, 345, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(129, 335, 5, 0.5, 3.6);
-context.fill();
+ctx.arc(129, 335, 5, 0.5, 3.6);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(161, 335, 5, 6, 2.8);
-context.fill();
+ctx.arc(161, 335, 5, 6, 2.8);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(145, 345, 25, 0.9, 2.3);
-context.stroke();
+ctx.arc(145, 345, 25, 0.9, 2.3);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Fifteenth Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(245, 345, 40, 0, 7);
-context.stroke();
+ctx.arc(245, 345, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(229, 345, 5, 5.8, 3);
-context.fill();
+ctx.arc(229, 345, 5, 5.8, 3);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(261, 345, 5, 6.5, 3.6);
-context.fill();
+ctx.arc(261, 345, 5, 6.5, 3.6);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(245, 395, 25, 4.1, -0.9);
-context.stroke();
+ctx.arc(245, 395, 25, 4.1, -0.9);
+ctx.stroke();
 
-close(context);
+close(ctx);
 
 //--------------------------------------------------------------Sixteenth Emoji---------------------------------------------------------------------
 
-begin(context);
+begin(ctx);
 
-context.arc(345, 345, 40, 0, 7);
-context.stroke();
+ctx.arc(345, 345, 40, 0, 7);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(329, 335, 5, 0, 7);
-context.fill();
+ctx.arc(329, 335, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(361, 335, 5, 0, 7);
-context.fill();
+ctx.arc(361, 335, 5, 0, 7);
+ctx.fill();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(345, 390, 25, 4.1, -0.9);
-context.stroke();
+ctx.arc(345, 390, 25, 4.1, -0.9);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.moveTo(365, 341);
-context.lineTo(359, 356);
-context.stroke();
+ctx.moveTo(365, 341);
+ctx.lineTo(359, 356);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.moveTo(365, 341);
-context.lineTo(371, 356);
-context.stroke();
+ctx.moveTo(365, 341);
+ctx.lineTo(371, 356);
+ctx.stroke();
 
-close(context);
-begin(context);
+close(ctx);
+begin(ctx);
 
-context.arc(365, 357, 6, 0, 3.2);
-context.stroke();
+ctx.arc(365, 357, 6, 0, 3.2);
+ctx.stroke();
 
-close(context);
-begin(context);
-
-context.arc(345, 390, 25, 4.1, -0.9);
-context.stroke();
-
-close(context);
+close(ctx);

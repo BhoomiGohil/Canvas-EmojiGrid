@@ -1,601 +1,389 @@
-var cont = document.getElementById("emojis");
-var context = cont.getContext("2d");
+var element = document.getElementById("emo");
+var context = element.getContext("2d");
 
+var size = 40;
+var cols = 4;
+var rows = 4;
+var sideSpace = 10;
+
+element.width = rows * 100;
+element.height = cols * 100;
+
+// Calculate canvas center coordinates
+var canvasWidth = element.width;
+var canvasHeight = element.height;
+var centerX = canvasWidth / 2;
+var centerY = canvasHeight / 2;
+
+// Offset values to align all emojis in the center region
+var xOffset = canvasWidth / rows; // Horizontal spacing between emojis
+var yOffset = canvasHeight / cols; // Vertical spacing between rows
+var startX = centerX - (rows * 100) / 2 + size + sideSpace; // Adjust this value for central alignment of all emojis
+var startY = centerY - (cols * 100) / 2 + size + sideSpace;
+
+// Styles for drawing
 context.fillStyle = "#615a5a";
 context.strokeStyle = "#615a5a";
 context.lineCap = "round";
 context.lineWidth = "3";
 
-function begin(context) {
+// Helper function to draw individual emojis
+function drawEmojiOutline(x, y) {
   context.beginPath();
-}
-
-function close(context) {
+  context.arc(x, y, size, 0, 7); // Face
+  context.stroke();
   context.closePath();
 }
 
-//--------------------------------------------------------------First Emoji---------------------------------------------------------------------
+function leftEye(x, y) {
+  context.beginPath();
+  context.arc(x - 15, y - 10, 5, 0, 7);
+  context.fill();
+  context.closePath();
+}
 
-begin(context);
+function rightEye(x, y) {
+  context.beginPath();
 
-context.arc(45, 45, 40, 0, 7);
-context.stroke();
+  context.arc(x + 15, y - 10, 5, 0, 7);
+  context.fill();
 
-close(context);
-begin(context);
+  context.closePath();
+}
 
-context.arc(29, 35, 5, 0, 7);
-context.fill();
+function rightEyeBlink(x, y) {
+  context.beginPath();
 
-close(context);
-begin(context);
+  context.arc(x + 15, y - 10, 5, 3, 6.5);
+  context.stroke();
 
-context.arc(61, 35, 5, 0, 7);
-context.fill();
+  context.closePath();
+}
 
-close(context);
-begin(context);
+function leftEyeBlink(x, y) {
+  context.beginPath();
 
-context.arc(45, 45, 25, 0.9, 2.3);
-context.stroke();
+  context.arc(x - 15, y - 10, 5, 3, 6.5);
+  context.stroke();
 
-close(context);
+  context.closePath();
+}
 
-//--------------------------------------------------------------Second Emoji---------------------------------------------------------------------
+function rightSadEye(x, y) {
+  context.beginPath();
 
-begin(context);
+  context.arc(x + 15, y - 10, 5, 0, 3);
+  context.stroke();
 
-context.arc(145, 45, 40, 0, 7);
-context.stroke();
+  context.closePath();
+}
 
-close(context);
-begin(context);
+function leftSadEye(x, y) {
+  context.beginPath();
 
-context.arc(129, 35, 5, 0, 7);
-context.fill();
+  context.arc(x - 15, y - 10, 5, 0, 3);
+  context.stroke();
 
-close(context);
-begin(context);
+  context.closePath();
+}
 
-context.arc(161, 36, 5, 3, 6.5);
-context.stroke();
+function rightHalfEye(x, y) {
+  context.beginPath();
 
-close(context);
-begin(context);
+  context.arc(x + 15, y - 10, 5, 6, 2.8);
+  context.fill();
 
-context.arc(145, 45, 25, 0.9, 2.3);
-context.stroke();
+  context.closePath();
+}
 
-close(context);
+function leftHalfEye(x, y) {
+  context.beginPath();
 
-//--------------------------------------------------------------Third Emoji---------------------------------------------------------------------
+  context.arc(x - 15, y - 10, 5, 0.5, 3.6);
+  context.fill();
 
-begin(context);
+  context.closePath();
+}
 
-context.arc(245, 45, 40, 0, 7);
-context.stroke();
+function rightExtraSadEye(x, y) {
+  context.beginPath();
 
-close(context);
-begin(context);
+  context.arc(x + 15, y - 10, 5, 6.5, 3.6);
+  context.fill();
 
-context.arc(229, 35, 5, 0, 7);
-context.fill();
+  context.closePath();
+}
 
-close(context);
-begin(context);
+function leftExtraSadEye(x, y) {
+  context.beginPath();
 
-context.arc(261, 35, 5, 0, 7);
-context.fill();
+  context.arc(x - 15, y - 10, 5, 5.8, 3);
+  context.fill();
 
-close(context);
-begin(context);
+  context.closePath();
+}
 
-context.moveTo(217, 46);
-context.lineTo(272, 46);
-context.stroke();
+function smile(x, y) {
+  context.beginPath();
 
-close(context);
-begin(context);
+  context.arc(x, y, 25, 0.9, 2.3);
+  context.stroke();
 
-context.arc(245, 46, 28, 0, 3.1);
-context.stroke();
+  context.closePath();
+}
 
-close(context);
+function sad(x, y) {
+  context.beginPath();
 
-//--------------------------------------------------------------Fourth Emoji---------------------------------------------------------------------
+  context.arc(x, y + 45, 25, 4.1, -0.9);
+  context.stroke();
 
-begin(context);
+  context.closePath();
+}
 
-context.arc(345, 45, 40, 0, 7);
-context.stroke();
+function happy(x, y) {
+  context.beginPath();
 
-close(context);
-begin(context);
+  context.moveTo(x - 28, y + 1);
+  context.lineTo(x + 28, y + 1);
+  context.stroke();
 
-context.arc(329, 36, 5, 3, 6.5);
-context.stroke();
+  context.closePath();
+  context.beginPath();
 
-close(context);
-begin(context);
+  context.arc(x, y + 1, 28, 0, 3.1);
+  context.stroke();
 
-context.arc(361, 36, 5, 3, 6.5);
-context.stroke();
+  context.closePath();
+}
 
-close(context);
-begin(context);
+function blank(x, y) {
+  context.beginPath();
 
-context.arc(345, 45, 25, 0.9, 2.3);
-context.stroke();
+  context.moveTo(x - 17, y + 17);
+  context.lineTo(x + 17, y + 17);
+  context.stroke();
 
-close(context);
+  context.closePath();
+}
 
-//--------------------------------------------------------------Fifth Emoji---------------------------------------------------------------------
+function tougue(x, y) {
+  context.beginPath();
 
-begin(context);
+  context.moveTo(x + 8, y + 25);
+  context.lineTo(x + 8, y + 30);
+  context.stroke();
 
-context.arc(45, 145, 40, 0, 7);
-context.stroke();
+  context.closePath();
+  context.beginPath();
 
-close(context);
-begin(context);
+  context.moveTo(x - 8, y + 25);
+  context.lineTo(x - 8, y + 30);
+  context.stroke();
 
-context.arc(29, 135, 5, 0, 7);
-context.fill();
+  context.closePath();
+  context.beginPath();
 
-close(context);
-begin(context);
+  context.arc(x, y + 30, 8, 0, 3);
+  context.stroke();
 
-context.arc(61, 135, 5, 0, 7);
-context.fill();
+  context.closePath();
+}
 
-close(context);
-begin(context);
+function sidetougue(x, y) {
+  context.beginPath();
 
-context.arc(45, 190, 25, 4.1, -0.9);
-context.stroke();
+  context.arc(x + 11, y + 23, 6, -0.5, 2.6);
+  context.stroke();
 
-close(context);
+  context.closePath();
+}
 
-//--------------------------------------------------------------Sixth Emoji---------------------------------------------------------------------
+function rightLaughTear(x, y) {
+  context.beginPath();
 
-begin(context);
+  context.moveTo(x - 22, y - 7);
+  context.lineTo(x - 35, y + 3);
+  context.stroke();
 
-context.arc(145, 145, 40, 0, 7);
-context.stroke();
+  context.closePath();
+  context.beginPath();
 
-close(context);
-begin(context);
+  context.moveTo(x - 22, y - 7);
+  context.lineTo(x - 25, y + 10);
+  context.stroke();
 
-context.arc(129, 135, 5, 0, 7);
-context.fill();
+  context.closePath();
 
-close(context);
-begin(context);
+  context.beginPath();
 
-context.arc(161, 135, 5, 0, 7);
-context.fill();
+  context.arc(x - 31, y + 8, 6, 1, 4);
+  context.stroke();
 
-close(context);
-begin(context);
+  context.closePath();
+}
 
-context.moveTo(129, 162);
-context.lineTo(161, 162);
-context.stroke();
+function leftLaughTear(x, y) {
+  context.beginPath();
 
-close(context);
+  context.moveTo(x + 22, y - 7);
+  context.lineTo(x + 35, y + 3);
+  context.stroke();
 
-//--------------------------------------------------------------Seventh Emoji---------------------------------------------------------------------
+  context.closePath();
+  context.beginPath();
 
-begin(context);
+  context.moveTo(x + 22, y - 7);
+  context.lineTo(x + 25, y + 10);
+  context.stroke();
 
-context.arc(245, 145, 40, 0, 7);
-context.stroke();
+  context.closePath();
+  context.beginPath();
 
-close(context);
-begin(context);
+  context.arc(x + 31, y + 8, 6, -1, 2);
+  context.stroke();
 
-context.arc(229, 134, 5, 0, 3);
-context.stroke();
+  context.closePath();
+}
 
-close(context);
-begin(context);
+function o(x, y) {
+  context.beginPath();
 
-context.arc(261, 134, 5, 0, 3);
-context.stroke();
+  context.arc(x, y + 15, 10, 0, 8);
+  context.stroke();
 
-close(context);
-begin(context);
+  context.closePath();
+}
 
-context.arc(245, 190, 25, 4.1, -0.9);
-context.stroke();
+function rightTear(x, y) {
+  context.beginPath();
 
-close(context);
+  context.moveTo(x + 20, y - 5);
+  context.lineTo(x + 14, y + 10);
+  context.stroke();
 
-//--------------------------------------------------------------Eighth Emoji---------------------------------------------------------------------
+  context.closePath();
+  context.beginPath();
 
-begin(context);
+  context.moveTo(x + 20, y - 5);
+  context.lineTo(x + 26, y + 10);
+  context.stroke();
 
-context.arc(345, 145, 40, 0, 7);
-context.stroke();
+  context.closePath();
+  context.beginPath();
 
-close(context);
-begin(context);
+  context.arc(x + 20, y + 11, 6, 0, 3.2);
+  context.stroke();
 
-context.arc(329, 136, 5, 3, 6.5);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(361, 136, 5, 3, 6.5);
-context.stroke();
-
-close(context);
-begin(context);
-
-close(context);
-begin(context);
-
-context.moveTo(317, 146);
-context.lineTo(372, 146);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(345, 146, 28, 0, 3.1);
-context.stroke();
-
-//--------------------------------------------------------------Ninth Emoji---------------------------------------------------------------------
-
-begin(context);
-
-context.arc(45, 245, 40, 0, 7);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(29, 236, 5, 0, 7);
-context.fill();
-
-close(context);
-begin(context);
-
-context.arc(61, 237, 5, 3, 6.5);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(45, 245, 25, 0.9, 2.3);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.moveTo(37, 270);
-context.lineTo(37, 275);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.moveTo(52.9, 270);
-context.lineTo(52.9, 275);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(45, 275, 8, 0, 3);
-context.stroke();
-
-close(context);
-
-//--------------------------------------------------------------Tenth Emoji---------------------------------------------------------------------
-
-begin(context);
-
-context.arc(145, 245, 40, 0, 7);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(129, 235, 5, 3, 6.5);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(161, 236, 5, 3, 6.5);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(145, 245, 25, 0.9, 2.3);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(155, 268, 6, -0.5, 2.6);
-context.stroke();
-
-close(context);
-
-//--------------------------------------------------------------Eleventh Emoji---------------------------------------------------------------------
-
-begin(context);
-
-context.arc(245, 245, 40, 0, 7);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(229, 236, 5, 3, 6.5);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(261, 236, 5, 3, 6.5);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.moveTo(217, 246);
-context.lineTo(272, 246);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(245, 246, 28, 0, 3.1);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.moveTo(223, 240);
-context.lineTo(208, 245);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.moveTo(223, 240);
-context.lineTo(214, 255);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.moveTo(267, 240);
-context.lineTo(282, 245);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.moveTo(267, 240);
-context.lineTo(276, 255);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(210, 251, 6, 1, 4);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(280, 251, 6, -1, 2);
-context.stroke();
-
-close(context);
-
-//--------------------------------------------------------------Twelfth Emoji---------------------------------------------------------------------
-
-begin(context);
-
-context.arc(345, 245, 40, 0, 7);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(329, 235, 5, 0, 7);
-context.fill();
-
-close(context);
-begin(context);
-
-context.arc(361, 235, 5, 0, 7);
-context.fill();
-
-close(context);
-begin(context);
-
-context.arc(345, 260, 10, 0, 8);
-context.stroke();
-
-close(context);
-
-//--------------------------------------------------------------Thirteenth Emoji---------------------------------------------------------------------
-
-begin(context);
-
-context.arc(45, 345, 40, 0, 7);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(29, 335, 5, 0.5, 3.6);
-context.fill();
-
-close(context);
-begin(context);
-
-context.arc(61, 335, 5, 6, 2.8);
-context.fill();
-
-close(context);
-begin(context);
-
-context.arc(45, 390, 25, 4.1, -0.9);
-context.stroke();
-
-close(context);
-
-//--------------------------------------------------------------Fourteenth Emoji---------------------------------------------------------------------
-
-begin(context);
-
-context.arc(145, 345, 40, 0, 7);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(129, 335, 5, 0.5, 3.6);
-context.fill();
-
-close(context);
-begin(context);
-
-context.arc(161, 335, 5, 6, 2.8);
-context.fill();
-
-close(context);
-begin(context);
-
-context.arc(145, 345, 25, 0.9, 2.3);
-context.stroke();
-
-close(context);
-
-//--------------------------------------------------------------Fifteenth Emoji---------------------------------------------------------------------
-
-begin(context);
-
-context.arc(245, 345, 40, 0, 7);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(229, 345, 5, 5.8, 3);
-context.fill();
-
-close(context);
-begin(context);
-
-context.arc(261, 345, 5, 6.5, 3.6);
-context.fill();
-
-close(context);
-begin(context);
-
-context.arc(245, 395, 25, 4.1, -0.9);
-context.stroke();
-
-close(context);
-
-//--------------------------------------------------------------Sixteenth Emoji---------------------------------------------------------------------
-
-begin(context);
-
-context.arc(345, 345, 40, 0, 7);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(329, 335, 5, 0, 7);
-context.fill();
-
-close(context);
-begin(context);
-
-context.arc(361, 335, 5, 0, 7);
-context.fill();
-
-close(context);
-begin(context);
-
-context.arc(345, 390, 25, 4.1, -0.9);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.moveTo(365, 341);
-context.lineTo(359, 356);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.moveTo(365, 341);
-context.lineTo(371, 356);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(365, 357, 6, 0, 3.2);
-context.stroke();
-
-close(context);
-begin(context);
-
-context.arc(345, 390, 25, 4.1, -0.9);
-context.stroke();
-
-close(context);
-
-var cont = document.getElementById("emo");
-var ctx = cont.getContext("2d");
-
-// Calculate canvas center coordinates
-var canvasWidth = cont.width;
-var canvasHeight = cont.height;
-var centerX = canvasWidth / 2;
-var centerY = canvasHeight / 2;
-
-// Offset values to align all emojis in the center region
-var xOffset = 100; // Horizontal spacing between emojis
-var yOffset = 100; // Vertical spacing between rows
-var startX = centerX - 150; // Adjust this value for central alignment of all emojis
-var startY = centerY - 150;
-
-// Styles for drawing
-ctx.fillStyle = "#615a5a";
-ctx.strokeStyle = "#615a5a";
-ctx.lineCap = "round";
-ctx.lineWidth = "3";
-
-// Helper function to draw individual emojis
-function drawEmojiOutline(x, y) {
-  ctx.beginPath();
-  ctx.arc(x, y, 40, 0, 7); // Face
-  ctx.stroke();
-  ctx.closePath();
+  context.closePath();
 }
 
 // Draw all emojis in a grid, centered
-for (let row = 0; row < 4; row++) {
-  for (let col = 0; col < 4; col++) {
+for (let row = 0; row < rows; row++) {
+  for (let col = 0; col < cols; col++) {
     let x = startX + col * xOffset;
     let y = startY + row * yOffset;
 
+    let leftEyeDisplay =
+      (row === 0 && col === 0) ||
+      (row === 0 && col === 1) ||
+      (row === 0 && col === 2) ||
+      (row === 1 && col === 0) ||
+      (row === 1 && col === 1) ||
+      (row === 2 && col === 0) ||
+      (row === 2 && col === 3) ||
+      (row === 3 && col === 3);
+
+    let rightEyeDisplay =
+      (row === 0 && col === 0) ||
+      (row === 0 && col === 2) ||
+      (row === 1 && col === 0) ||
+      (row === 1 && col === 1) ||
+      (row === 2 && col === 3) ||
+      (row === 3 && col === 3);
+
+    let rightEyeBlinkDisplay =
+      (row === 0 && col === 1) ||
+      (row === 0 && col === 3) ||
+      (row === 1 && col === 3) ||
+      (row === 2 && col === 0) ||
+      (row === 2 && col === 1) ||
+      (row === 2 && col === 2);
+
+    let leftEyeBlinkDisplay =
+      (row === 0 && col === 3) ||
+      (row === 1 && col === 3) ||
+      (row === 2 && col === 1) ||
+      (row === 2 && col === 2);
+
+    let rightSadEyeDisplay = row === 1 && col === 2;
+
+    let leftSadEyeDisplay = row === 1 && col === 2;
+
+    let rightHalfEyeDisplay =
+      (row === 3 && col === 0) || (row === 3 && col === 1);
+
+    let leftHalfEyeDisplay =
+      (row === 3 && col === 0) || (row === 3 && col === 1);
+
+    let rightExtraSadEyeDisplay = row === 3 && col === 2;
+
+    let leftExtraSadEyeDisplay = row === 3 && col === 2;
+
+    let smileDisplay =
+      (row === 0 && col === 0) ||
+      (row === 0 && col === 1) ||
+      (row === 0 && col === 3) ||
+      (row === 2 && col === 0) ||
+      (row === 2 && col === 1) ||
+      (row === 3 && col === 1);
+
+    let sadDisplay =
+      (row === 1 && col === 0) ||
+      (row === 1 && col === 2) ||
+      (row === 3 && col === 0) ||
+      (row === 3 && col === 2) ||
+      (row === 3 && col === 3);
+
+    let happyDisplay =
+      (row === 0 && col === 2) ||
+      (row === 1 && col === 3) ||
+      (row === 2 && col === 2);
+
+    let blankDisplay = row === 1 && col === 1;
+
+    let tougueDisplay = row === 2 && col === 0;
+
+    let sideTougueDisplay = row === 2 && col === 1;
+
+    let rightLaughTearDisplay = row === 2 && col === 2;
+
+    let leftLaughTearDisplay = row === 2 && col === 2;
+
+    let oDisplay = row === 2 && col === 3;
+
+    let rightTearDisplay = row === 3 && col === 3;
+
     drawEmojiOutline(x, y);
+    if (leftEyeDisplay) leftEye(x, y);
+    if (rightEyeDisplay) rightEye(x, y);
+    if (rightEyeBlinkDisplay) rightEyeBlink(x, y);
+    if (leftEyeBlinkDisplay) leftEyeBlink(x, y);
+    if (rightSadEyeDisplay) rightSadEye(x, y);
+    if (leftSadEyeDisplay) leftSadEye(x, y);
+    if (rightHalfEyeDisplay) rightHalfEye(x, y);
+    if (leftHalfEyeDisplay) leftHalfEye(x, y);
+    if (rightExtraSadEyeDisplay) rightExtraSadEye(x, y);
+    if (leftExtraSadEyeDisplay) leftExtraSadEye(x, y);
+    if (smileDisplay) smile(x, y);
+    if (sadDisplay) sad(x, y);
+    if (happyDisplay) happy(x, y);
+    if (blankDisplay) blank(x, y);
+    if (tougueDisplay) tougue(x, y);
+    if (sideTougueDisplay) sidetougue(x, y);
+    if (rightLaughTearDisplay) rightLaughTear(x, y);
+    if (leftLaughTearDisplay) leftLaughTear(x, y);
+    if (oDisplay) o(x, y);
+    if (rightTearDisplay) rightTear(x, y);
   }
 }
