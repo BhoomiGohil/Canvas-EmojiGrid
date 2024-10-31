@@ -1,25 +1,29 @@
 var element = document.getElementById("emo");
 var context = element.getContext("2d");
 
-var size = 40;
+var size = 200;
 var cols = 4;
 var rows = 4;
-var sideSpace = 10;
+var space = 2.5;
 
-element.width = rows * 100;
-element.height = cols * 100;
+var sizeSpace = size * space;
+
+element.width = sizeSpace * rows;
+element.height = sizeSpace * cols;
 
 // Calculate canvas center coordinates
 var canvasWidth = element.width;
 var canvasHeight = element.height;
+
 var centerX = canvasWidth / 2;
 var centerY = canvasHeight / 2;
 
 // Offset values to align all emojis in the center region
-var xOffset = canvasWidth / rows; // Horizontal spacing between emojis
-var yOffset = canvasHeight / cols; // Vertical spacing between rows
-var startX = centerX - (rows * 100) / 2 + size + sideSpace; // Adjust this value for central alignment of all emojis
-var startY = centerY - (cols * 100) / 2 + size + sideSpace;
+var xOffset = sizeSpace;
+var yOffset = sizeSpace;
+
+var startX = size * (space / 2);
+var startY = size * (space / 2);
 
 // Styles for drawing
 context.fillStyle = "#615a5a";
