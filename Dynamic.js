@@ -1,15 +1,15 @@
 var element = document.getElementById("emo");
 var context = element.getContext("2d");
 
-var size = 200;
+var size = 40;
 var cols = 4;
 var rows = 4;
 var space = 2.5;
 
-var sizeSpace = size * space;
+var emojiSizeSpace = size * space;
 
-element.width = sizeSpace * rows;
-element.height = sizeSpace * cols;
+element.width = emojiSizeSpace * rows;
+element.height = emojiSizeSpace * cols;
 
 // Calculate canvas center coordinates
 var canvasWidth = element.width;
@@ -19,8 +19,8 @@ var centerX = canvasWidth / 2;
 var centerY = canvasHeight / 2;
 
 // Offset values to align all emojis in the center region
-var xOffset = sizeSpace;
-var yOffset = sizeSpace;
+var xOffset = emojiSizeSpace;
+var yOffset = emojiSizeSpace;
 
 var startX = size * (space / 2);
 var startY = size * (space / 2);
@@ -31,17 +31,24 @@ context.strokeStyle = "#615a5a";
 context.lineCap = "round";
 context.lineWidth = "3";
 
+var circleStart = 0;
+var circleEnd = 7;
+
 // Helper function to draw individual emojis
 function drawEmojiOutline(x, y) {
   context.beginPath();
-  context.arc(x, y, size, 0, 7); // Face
+  context.arc(x, y, size, circleStart, circleEnd); // Face
   context.stroke();
   context.closePath();
 }
 
+var eyeX = size / 3;
+var eyeY = size / 5;
+var eyeSize = size / 9;
+
 function leftEye(x, y) {
   context.beginPath();
-  context.arc(x - 15, y - 10, 5, 0, 7);
+  context.arc(x - eyeX, y - eyeY, eyeSize, circleStart, circleEnd);
   context.fill();
   context.closePath();
 }
@@ -49,7 +56,7 @@ function leftEye(x, y) {
 function rightEye(x, y) {
   context.beginPath();
 
-  context.arc(x + 15, y - 10, 5, 0, 7);
+  context.arc(x + eyeX, y - eyeY, eyeSize, circleStart, circleEnd);
   context.fill();
 
   context.closePath();
@@ -58,7 +65,7 @@ function rightEye(x, y) {
 function rightEyeBlink(x, y) {
   context.beginPath();
 
-  context.arc(x + 15, y - 10, 5, 3, 6.5);
+  context.arc(x + eyeX, y - eyeY, eyeSize, 3, 6.5);
   context.stroke();
 
   context.closePath();
@@ -67,7 +74,7 @@ function rightEyeBlink(x, y) {
 function leftEyeBlink(x, y) {
   context.beginPath();
 
-  context.arc(x - 15, y - 10, 5, 3, 6.5);
+  context.arc(x - eyeX, y - eyeY, eyeSize, 3, 6.5);
   context.stroke();
 
   context.closePath();
@@ -76,7 +83,7 @@ function leftEyeBlink(x, y) {
 function rightSadEye(x, y) {
   context.beginPath();
 
-  context.arc(x + 15, y - 10, 5, 0, 3);
+  context.arc(x + eyeX, y - eyeY, eyeSize, circleStart, 3);
   context.stroke();
 
   context.closePath();
@@ -85,7 +92,7 @@ function rightSadEye(x, y) {
 function leftSadEye(x, y) {
   context.beginPath();
 
-  context.arc(x - 15, y - 10, 5, 0, 3);
+  context.arc(x - eyeX, y - eyeY, eyeSize, circleStart, 3);
   context.stroke();
 
   context.closePath();
@@ -94,7 +101,7 @@ function leftSadEye(x, y) {
 function rightHalfEye(x, y) {
   context.beginPath();
 
-  context.arc(x + 15, y - 10, 5, 6, 2.8);
+  context.arc(x + eyeX, y - eyeY, eyeSize, 6, 2.8);
   context.fill();
 
   context.closePath();
@@ -103,7 +110,7 @@ function rightHalfEye(x, y) {
 function leftHalfEye(x, y) {
   context.beginPath();
 
-  context.arc(x - 15, y - 10, 5, 0.5, 3.6);
+  context.arc(x - eyeX, y - eyeY, eyeSize, 0.5, 3.6);
   context.fill();
 
   context.closePath();
@@ -112,7 +119,7 @@ function leftHalfEye(x, y) {
 function rightExtraSadEye(x, y) {
   context.beginPath();
 
-  context.arc(x + 15, y - 10, 5, 6.5, 3.6);
+  context.arc(x + eyeX, y - eyeY, eyeSize, 6.5, 3.6);
   context.fill();
 
   context.closePath();
@@ -121,107 +128,137 @@ function rightExtraSadEye(x, y) {
 function leftExtraSadEye(x, y) {
   context.beginPath();
 
-  context.arc(x - 15, y - 10, 5, 5.8, 3);
+  context.arc(x - eyeX, y - eyeY, eyeSize, 5.8, 3);
   context.fill();
 
   context.closePath();
 }
 
+var mouthY = 0;
+var mouthSize = size / 1.6;
+
 function smile(x, y) {
   context.beginPath();
 
-  context.arc(x, y, 25, 0.9, 2.3);
+  context.arc(x, y + mouthY, mouthSize, 0.9, 2.3);
   context.stroke();
 
   context.closePath();
 }
+
+var sadY = size / 1;
 
 function sad(x, y) {
   context.beginPath();
 
-  context.arc(x, y + 45, 25, 4.1, -0.9);
+  context.arc(x, y + sadY, mouthSize, 4.1, -0.9);
   context.stroke();
 
   context.closePath();
 }
+
+var happyY = size / 9;
 
 function happy(x, y) {
   context.beginPath();
 
-  context.moveTo(x - 28, y + 1);
-  context.lineTo(x + 28, y + 1);
+  context.moveTo(x - mouthSize, y + happyY);
+  context.lineTo(x + mouthSize, y + happyY);
   context.stroke();
 
   context.closePath();
   context.beginPath();
 
-  context.arc(x, y + 1, 28, 0, 3.1);
+  context.arc(x, y + happyY, mouthSize, circleStart, 3.1);
   context.stroke();
 
   context.closePath();
 }
+
+var blankXY = size / 3;
 
 function blank(x, y) {
   context.beginPath();
 
-  context.moveTo(x - 17, y + 17);
-  context.lineTo(x + 17, y + 17);
+  context.moveTo(x - blankXY, y + blankXY);
+  context.lineTo(x + blankXY, y + blankXY);
   context.stroke();
 
   context.closePath();
 }
+
+var tougueMoveLineX = size / 5;
+var touguemoveY = size / 1.7;
+var tougueLineY = size / 1.4;
+var tougueY = size / 1.4;
+var tougueSize = size / 5;
 
 function tougue(x, y) {
   context.beginPath();
 
-  context.moveTo(x + 8, y + 25);
-  context.lineTo(x + 8, y + 30);
+  context.moveTo(x + tougueMoveLineX, y + touguemoveY);
+  context.lineTo(x + tougueMoveLineX, y + tougueLineY);
   context.stroke();
 
   context.closePath();
   context.beginPath();
 
-  context.moveTo(x - 8, y + 25);
-  context.lineTo(x - 8, y + 30);
+  context.moveTo(x - tougueMoveLineX, y + touguemoveY);
+  context.lineTo(x - tougueMoveLineX, y + tougueLineY);
   context.stroke();
 
   context.closePath();
   context.beginPath();
 
-  context.arc(x, y + 30, 8, 0, 3);
+  context.arc(x, y + tougueY, tougueSize, circleStart, 3);
   context.stroke();
 
   context.closePath();
 }
+
+var sideTougueX = size / 5;
+var sideTougueY = size / 1.7;
 
 function sidetougue(x, y) {
   context.beginPath();
 
-  context.arc(x + 11, y + 23, 6, -0.5, 2.6);
+  context.arc(x + sideTougueX, y + sideTougueY, tougueSize, -0.5, 2.9);
   context.stroke();
 
   context.closePath();
 }
 
+var laughTearMoveX = size / 2;
+var laughTearMoveY = size / 9;
+var laughTearLineX1 = size / 1;
+var laughTearLineY1 = size / 6;
+var laughTearLineX2 = size / 1.3;
+var laughTearLineY2 = size / 2.5;
+
+var laughTearArcX = size / 1.1;
+var laughTearArcY = size / 3.2;
+
+var laughTearArcSize = size / 6;
+
 function rightLaughTear(x, y) {
   context.beginPath();
 
-  context.moveTo(x - 22, y - 7);
-  context.lineTo(x - 35, y + 3);
+  context.moveTo(x - laughTearMoveX, y - laughTearMoveY);
+  context.lineTo(x - laughTearLineX1, y + laughTearLineY1);
   context.stroke();
 
   context.closePath();
   context.beginPath();
 
-  context.moveTo(x - 22, y - 7);
-  context.lineTo(x - 25, y + 10);
+  context.moveTo(x - laughTearMoveX, y - laughTearMoveY);
+  context.lineTo(x - laughTearLineX2, y + laughTearLineY2);
   context.stroke();
 
   context.closePath();
 
   context.beginPath();
 
-  context.arc(x - 31, y + 8, 6, 1, 4);
+  context.arc(x - laughTearArcX, y + laughTearArcY, laughTearArcSize, 0.5, 4);
   context.stroke();
 
   context.closePath();
@@ -230,53 +267,102 @@ function rightLaughTear(x, y) {
 function leftLaughTear(x, y) {
   context.beginPath();
 
-  context.moveTo(x + 22, y - 7);
-  context.lineTo(x + 35, y + 3);
+  context.moveTo(x + laughTearMoveX, y - laughTearMoveY);
+  context.lineTo(x + laughTearLineX1, y + laughTearLineY1);
   context.stroke();
 
   context.closePath();
   context.beginPath();
 
-  context.moveTo(x + 22, y - 7);
-  context.lineTo(x + 25, y + 10);
+  context.moveTo(x + laughTearMoveX, y - laughTearMoveY);
+  context.lineTo(x + laughTearLineX2, y + laughTearLineY2);
   context.stroke();
 
   context.closePath();
   context.beginPath();
 
-  context.arc(x + 31, y + 8, 6, -1, 2);
+  context.arc(x + laughTearArcX, y + laughTearArcY, laughTearArcSize, -1, 2.5);
   context.stroke();
 
   context.closePath();
 }
+
+var oY = size / 2.5;
+var oSize = size / 5;
 
 function o(x, y) {
   context.beginPath();
 
-  context.arc(x, y + 15, 10, 0, 8);
+  context.arc(x, y + oY, oSize, circleStart, circleEnd);
   context.stroke();
 
   context.closePath();
 }
 
+var rightTearMoveX = size / 2;
+var rightTearMoveY = size / 10;
+
+var rightTearLineX1 = size / 1.5;
+var rightTearLineX2 = size / 3;
+var rightTearLineY = size / 3;
+
+var rightTearCircleX = size / 2;
+var rightTearCircleY = size / 3;
+var rigthTearCircleSize = size / 6;
+
 function rightTear(x, y) {
   context.beginPath();
 
-  context.moveTo(x + 20, y - 5);
-  context.lineTo(x + 14, y + 10);
+  context.moveTo(x + rightTearMoveX, y - rightTearMoveY);
+  context.lineTo(x + rightTearLineX1, y + rightTearLineY);
   context.stroke();
 
   context.closePath();
   context.beginPath();
 
-  context.moveTo(x + 20, y - 5);
-  context.lineTo(x + 26, y + 10);
+  context.moveTo(x + rightTearMoveX, y - rightTearMoveY);
+  context.lineTo(x + rightTearLineX2, y + rightTearLineY);
   context.stroke();
 
   context.closePath();
   context.beginPath();
 
-  context.arc(x + 20, y + 11, 6, 0, 3.2);
+  context.arc(
+    x + rightTearCircleX,
+    y + rightTearCircleY,
+    rigthTearCircleSize,
+    circleStart,
+    3.2
+  );
+  context.stroke();
+
+  context.closePath();
+}
+
+function leftTear(x, y) {
+  context.beginPath();
+
+  context.moveTo(x - rightTearMoveX, y - rightTearMoveY);
+  context.lineTo(x - rightTearLineX1, y + rightTearLineY);
+  context.stroke();
+
+  context.closePath();
+  context.beginPath();
+
+  context.moveTo(x - rightTearMoveX, y - rightTearMoveY);
+  context.lineTo(x - rightTearLineX2, y + rightTearLineY);
+  context.stroke();
+
+  context.closePath();
+  context.beginPath();
+
+  context.arc(
+    x - rightTearCircleX,
+    y + rightTearCircleY,
+    rigthTearCircleSize,
+    circleStart,
+    3.2
+  );
   context.stroke();
 
   context.closePath();
@@ -368,6 +454,8 @@ for (let row = 0; row < rows; row++) {
 
     let rightTearDisplay = row === 3 && col === 3;
 
+    let leftTearDisplay;
+
     drawEmojiOutline(x, y);
     if (leftEyeDisplay) leftEye(x, y);
     if (rightEyeDisplay) rightEye(x, y);
@@ -389,5 +477,6 @@ for (let row = 0; row < rows; row++) {
     if (leftLaughTearDisplay) leftLaughTear(x, y);
     if (oDisplay) o(x, y);
     if (rightTearDisplay) rightTear(x, y);
+    if (leftTearDisplay) leftTear(x, y);
   }
 }
