@@ -1,45 +1,56 @@
+// Initialize the canvas element and context for drawing
 var element = document.getElementById("emo");
 var context = element.getContext("2d");
 
-var size = 40;
-var cols = 4;
-var rows = 4;
-var space = 2.5;
+// Define emoji and grid settings
+var size = 40; // Base emoji size
+var cols = 4; // Number of columns in the grid
+var rows = 4; // Number of rows in the grid
+var space = 2.5; // Spacing multiplier between emojis
 
+// Calculate dimensions for canvas based on grid and spacing
 var emojiSizeSpace = size * space;
-
 element.width = emojiSizeSpace * rows;
 element.height = emojiSizeSpace * cols;
 
-// Calculate canvas center coordinates
-var canvasWidth = element.width;
-var canvasHeight = element.height;
+// Centering offsets
+var startX = size * (space / 2); // Starting x position
+var startY = size * (space / 2); // Starting y position
 
-var centerX = canvasWidth / 2;
-var centerY = canvasHeight / 2;
-
-// Offset values to align all emojis in the center region
-var xOffset = emojiSizeSpace;
-var yOffset = emojiSizeSpace;
-
-var startX = size * (space / 2);
-var startY = size * (space / 2);
-
-// Styles for drawing
+// Set style properties for drawing
 context.fillStyle = "#615a5a";
 context.strokeStyle = "#615a5a";
 context.lineCap = "round";
-context.lineWidth = "3";
+context.lineWidth = 3;
 
-var circleStart = 0;
-var circleEnd = 7;
+// Arc range constants
+var circleStart = 0; // Start angle for circles
+var circleEnd = Math.PI * 2; // End angle for circles
+
+function begin(context) {
+  context.beginPath();
+}
+
+function close(context) {
+  context.closePath();
+}
+
+function stroke(context) {
+  context.stroke();
+}
+
+function fill(context) {
+  context.fill();
+}
 
 // Helper function to draw individual emojis
 function drawEmojiOutline(x, y) {
-  context.beginPath();
+  begin(context);
+
   context.arc(x, y, size, circleStart, circleEnd); // Face
-  context.stroke();
-  context.closePath();
+  stroke(context);
+
+  close(context);
 }
 
 var eyeX = size / 3;
@@ -47,144 +58,146 @@ var eyeY = size / 5;
 var eyeSize = size / 9;
 
 function leftEye(x, y) {
-  context.beginPath();
+  begin(context);
+
   context.arc(x - eyeX, y - eyeY, eyeSize, circleStart, circleEnd);
-  context.fill();
-  context.closePath();
+  fill(context);
+
+  close(context);
 }
 
 function rightEye(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x + eyeX, y - eyeY, eyeSize, circleStart, circleEnd);
-  context.fill();
+  fill(context);
 
-  context.closePath();
+  close(context);
 }
 
 function rightEyeBlink(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x + eyeX, y - eyeY, eyeSize, 3, 6.5);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 function leftEyeBlink(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x - eyeX, y - eyeY, eyeSize, 3, 6.5);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 function rightSadEye(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x + eyeX, y - eyeY, eyeSize, circleStart, 3);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 function leftSadEye(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x - eyeX, y - eyeY, eyeSize, circleStart, 3);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 function rightHalfEye(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x + eyeX, y - eyeY, eyeSize, 6, 2.8);
-  context.fill();
+  fill(context);
 
-  context.closePath();
+  close(context);
 }
 
 function leftHalfEye(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x - eyeX, y - eyeY, eyeSize, 0.5, 3.6);
-  context.fill();
+  fill(context);
 
-  context.closePath();
+  close(context);
 }
 
 function rightExtraSadEye(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x + eyeX, y - eyeY, eyeSize, 6.5, 3.6);
-  context.fill();
+  fill(context);
 
-  context.closePath();
+  close(context);
 }
 
 function leftExtraSadEye(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x - eyeX, y - eyeY, eyeSize, 5.8, 3);
-  context.fill();
+  fill(context);
 
-  context.closePath();
+  close(context);
 }
 
 var mouthY = 0;
 var mouthSize = size / 1.6;
 
 function smile(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x, y + mouthY, mouthSize, 0.9, 2.3);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 var sadY = size / 1;
 
 function sad(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x, y + sadY, mouthSize, 4.1, -0.9);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 var happyY = size / 9;
 
 function happy(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.moveTo(x - mouthSize, y + happyY);
   context.lineTo(x + mouthSize, y + happyY);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
-  context.beginPath();
+  close(context);
+  begin(context);
 
   context.arc(x, y + happyY, mouthSize, circleStart, 3.1);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 var blankXY = size / 3;
 
 function blank(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.moveTo(x - blankXY, y + blankXY);
   context.lineTo(x + blankXY, y + blankXY);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 var tougueMoveLineX = size / 5;
@@ -194,38 +207,38 @@ var tougueY = size / 1.4;
 var tougueSize = size / 5;
 
 function tougue(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.moveTo(x + tougueMoveLineX, y + touguemoveY);
   context.lineTo(x + tougueMoveLineX, y + tougueLineY);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
-  context.beginPath();
+  close(context);
+  begin(context);
 
   context.moveTo(x - tougueMoveLineX, y + touguemoveY);
   context.lineTo(x - tougueMoveLineX, y + tougueLineY);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
-  context.beginPath();
+  close(context);
+  begin(context);
 
   context.arc(x, y + tougueY, tougueSize, circleStart, 3);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 var sideTougueX = size / 5;
 var sideTougueY = size / 1.7;
 
 function sidetougue(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x + sideTougueX, y + sideTougueY, tougueSize, -0.5, 2.9);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 var laughTearMoveX = size / 2;
@@ -241,62 +254,62 @@ var laughTearArcY = size / 3.2;
 var laughTearArcSize = size / 6;
 
 function rightLaughTear(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.moveTo(x - laughTearMoveX, y - laughTearMoveY);
   context.lineTo(x - laughTearLineX1, y + laughTearLineY1);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
-  context.beginPath();
+  close(context);
+  begin(context);
 
   context.moveTo(x - laughTearMoveX, y - laughTearMoveY);
   context.lineTo(x - laughTearLineX2, y + laughTearLineY2);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 
-  context.beginPath();
+  begin(context);
 
   context.arc(x - laughTearArcX, y + laughTearArcY, laughTearArcSize, 0.5, 4);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 function leftLaughTear(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.moveTo(x + laughTearMoveX, y - laughTearMoveY);
   context.lineTo(x + laughTearLineX1, y + laughTearLineY1);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
-  context.beginPath();
+  close(context);
+  begin(context);
 
   context.moveTo(x + laughTearMoveX, y - laughTearMoveY);
   context.lineTo(x + laughTearLineX2, y + laughTearLineY2);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
-  context.beginPath();
+  close(context);
+  begin(context);
 
   context.arc(x + laughTearArcX, y + laughTearArcY, laughTearArcSize, -1, 2.5);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 var oY = size / 2.5;
 var oSize = size / 5;
 
 function o(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.arc(x, y + oY, oSize, circleStart, circleEnd);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 var rightTearMoveX = size / 2;
@@ -311,21 +324,21 @@ var rightTearCircleY = size / 3;
 var rigthTearCircleSize = size / 6;
 
 function rightTear(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.moveTo(x + rightTearMoveX, y - rightTearMoveY);
   context.lineTo(x + rightTearLineX1, y + rightTearLineY);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
-  context.beginPath();
+  close(context);
+  begin(context);
 
   context.moveTo(x + rightTearMoveX, y - rightTearMoveY);
   context.lineTo(x + rightTearLineX2, y + rightTearLineY);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
-  context.beginPath();
+  close(context);
+  begin(context);
 
   context.arc(
     x + rightTearCircleX,
@@ -334,27 +347,27 @@ function rightTear(x, y) {
     circleStart,
     3.2
   );
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 function leftTear(x, y) {
-  context.beginPath();
+  begin(context);
 
   context.moveTo(x - rightTearMoveX, y - rightTearMoveY);
   context.lineTo(x - rightTearLineX1, y + rightTearLineY);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
-  context.beginPath();
+  close(context);
+  begin(context);
 
   context.moveTo(x - rightTearMoveX, y - rightTearMoveY);
   context.lineTo(x - rightTearLineX2, y + rightTearLineY);
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
-  context.beginPath();
+  close(context);
+  begin(context);
 
   context.arc(
     x - rightTearCircleX,
@@ -363,16 +376,16 @@ function leftTear(x, y) {
     circleStart,
     3.2
   );
-  context.stroke();
+  stroke(context);
 
-  context.closePath();
+  close(context);
 }
 
 // Draw all emojis in a grid, centered
 for (let row = 0; row < rows; row++) {
   for (let col = 0; col < cols; col++) {
-    let x = startX + col * xOffset;
-    let y = startY + row * yOffset;
+    let x = startX + col * emojiSizeSpace;
+    let y = startY + row * emojiSizeSpace;
 
     let leftEyeDisplay =
       (row === 0 && col === 0) ||
