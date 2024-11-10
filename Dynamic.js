@@ -109,6 +109,9 @@ var mouthY = 0;
 var mouthSize = size / 1.6;
 var sadY = size / 1;
 var happyY = size / 8;
+var blankXY = size / 2.5;
+var oY = size / 2.5;
+var oSize = size / 5;
 
 function mouth(x, y, mouthType) {
   begin(context);
@@ -129,19 +132,14 @@ function mouth(x, y, mouthType) {
   } else if (mouthType === "sad") {
     context.arc(x, y + sadY, mouthSize, 4.1, -0.9);
     stroke(context);
+  } else if (mouthType === "blank") {
+    context.moveTo(x - blankXY, y + blankXY);
+    context.lineTo(x + blankXY, y + blankXY);
+    stroke(context);
+  } else if (mouthType === "o") {
+    context.arc(x, y + oY, oSize, circleStart, circleEnd);
+    stroke(context);
   }
-
-  close(context);
-}
-
-var blankXY = size / 2.5;
-
-function blank(x, y) {
-  begin(context);
-
-  context.moveTo(x - blankXY, y + blankXY);
-  context.lineTo(x + blankXY, y + blankXY);
-  stroke(context);
 
   close(context);
 }
@@ -246,18 +244,6 @@ function leftLaughTear(x, y) {
   close(context);
 }
 
-var oY = size / 2.5;
-var oSize = size / 5;
-
-function o(x, y) {
-  begin(context);
-
-  context.arc(x, y + oY, oSize, circleStart, circleEnd);
-  stroke(context);
-
-  close(context);
-}
-
 var rightTearMoveX = size / 2;
 var rightTearMoveY = size / 10;
 
@@ -356,7 +342,7 @@ const emojiConfigs = {
   6: (x, y) => {
     eyes(x, y, "eye", "left");
     eyes(x, y, "eye", "right");
-    blank(x, y);
+    mouth(x, y, "blank");
   },
   7: (x, y) => {
     eyes(x, y, "sad", "left");
@@ -390,7 +376,7 @@ const emojiConfigs = {
   12: (x, y) => {
     eyes(x, y, "eye", "left");
     eyes(x, y, "eye", "right");
-    o(x, y);
+    mouth(x, y, "o");
   },
   13: (x, y) => {
     eyes(x, y, "half", "left");
@@ -428,9 +414,5 @@ for (let row = 0; row < rows; row++) {
     if (emojiConfigs[id]) {
       emojiConfigs[id](x, y);
     }
-
-    // if (configs[id]) {
-    //   configs[id](x, y);
-    // }
   }
 }
