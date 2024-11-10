@@ -36,11 +36,11 @@ function close(context) {
 }
 
 function stroke(context) {
-  context.stroke();
+  return context.stroke();
 }
 
 function fill(context) {
-  context.fill();
+  return context.fill();
 }
 
 // Helper function to draw individual emojis
@@ -53,142 +53,88 @@ function drawEmojiOutline(x, y) {
   close(context);
 }
 
-var eyeX = size / 3;
+var eyeX = size / 2.6;
 var eyeY = size / 5;
 var eyeSize = size / 9;
 
-function leftEye(x, y) {
+function eyes(x, y, eyeType, position) {
   begin(context);
 
-  context.arc(x - eyeX, y - eyeY, eyeSize, circleStart, circleEnd);
-  fill(context);
+  var eyeArcStarts, eyeArcEnds, fillOrStroke;
 
-  close(context);
-}
+  if (eyeType === "blink") {
+    eyeArcStarts = 3;
+    eyeArcEnds = 6.5;
+    fillOrStroke = "stroke";
+  } else if (eyeType === "sad") {
+    eyeArcStarts = circleStart;
+    eyeArcEnds = 3;
+    fillOrStroke = "stroke";
+  } else if (eyeType === "half") {
+    if (position === "left") {
+      eyeArcStarts = 0.5;
+      eyeArcEnds = 3.6;
+    } else if (position === "right") {
+      eyeArcStarts = 6;
+      eyeArcEnds = 2.8;
+    }
+    fillOrStroke = "fill";
+  } else if (eyeType === "extraSad") {
+    if (position === "left") {
+      eyeArcStarts = 5.8;
+      eyeArcEnds = 3;
+    } else if (position === "right") {
+      eyeArcStarts = 6.5;
+      eyeArcEnds = 3.6;
+    }
+    fillOrStroke = "fill";
+  } else {
+    eyeArcStarts = circleStart;
+    eyeArcEnds = circleEnd;
+    fillOrStroke = "fill";
+  }
 
-function rightEye(x, y) {
-  begin(context);
-
-  context.arc(x + eyeX, y - eyeY, eyeSize, circleStart, circleEnd);
-  fill(context);
-
-  close(context);
-}
-
-function rightEyeBlink(x, y) {
-  begin(context);
-
-  context.arc(x + eyeX, y - eyeY, eyeSize, 3, 6.5);
-  stroke(context);
-
-  close(context);
-}
-
-function leftEyeBlink(x, y) {
-  begin(context);
-
-  context.arc(x - eyeX, y - eyeY, eyeSize, 3, 6.5);
-  stroke(context);
-
-  close(context);
-}
-
-function rightSadEye(x, y) {
-  begin(context);
-
-  context.arc(x + eyeX, y - eyeY, eyeSize, circleStart, 3);
-  stroke(context);
-
-  close(context);
-}
-
-function leftSadEye(x, y) {
-  begin(context);
-
-  context.arc(x - eyeX, y - eyeY, eyeSize, circleStart, 3);
-  stroke(context);
-
-  close(context);
-}
-
-function rightHalfEye(x, y) {
-  begin(context);
-
-  context.arc(x + eyeX, y - eyeY, eyeSize, 6, 2.8);
-  fill(context);
-
-  close(context);
-}
-
-function leftHalfEye(x, y) {
-  begin(context);
-
-  context.arc(x - eyeX, y - eyeY, eyeSize, 0.5, 3.6);
-  fill(context);
-
-  close(context);
-}
-
-function rightExtraSadEye(x, y) {
-  begin(context);
-
-  context.arc(x + eyeX, y - eyeY, eyeSize, 6.5, 3.6);
-  fill(context);
-
-  close(context);
-}
-
-function leftExtraSadEye(x, y) {
-  begin(context);
-
-  context.arc(x - eyeX, y - eyeY, eyeSize, 5.8, 3);
-  fill(context);
+  if (position === "left") {
+    context.arc(x - eyeX, y - eyeY, eyeSize, eyeArcStarts, eyeArcEnds);
+    fillOrStroke === "fill" ? fill(context) : stroke(context);
+  } else if (position === "right") {
+    context.arc(x + eyeX, y - eyeY, eyeSize, eyeArcStarts, eyeArcEnds);
+    fillOrStroke === "fill" ? fill(context) : stroke(context);
+  }
 
   close(context);
 }
 
 var mouthY = 0;
 var mouthSize = size / 1.6;
-
-function smile(x, y) {
-  begin(context);
-
-  context.arc(x, y + mouthY, mouthSize, 0.9, 2.3);
-  stroke(context);
-
-  close(context);
-}
-
 var sadY = size / 1;
+var happyY = size / 8;
 
-function sad(x, y) {
+function mouth(x, y, mouthType) {
   begin(context);
 
-  context.arc(x, y + sadY, mouthSize, 4.1, -0.9);
-  stroke(context);
+  if (mouthType === "smile") {
+    context.arc(x, y + mouthY, mouthSize, 0.9, 2.3);
+    stroke(context);
+  } else if (mouthType === "happy") {
+    context.moveTo(x - mouthSize, y + happyY);
+    context.lineTo(x + mouthSize, y + happyY);
+    stroke(context);
+
+    close(context);
+    begin(context);
+
+    context.arc(x, y + happyY, mouthSize, circleStart, 3.1);
+    stroke(context);
+  } else if (mouthType === "sad") {
+    context.arc(x, y + sadY, mouthSize, 4.1, -0.9);
+    stroke(context);
+  }
 
   close(context);
 }
 
-var happyY = size / 9;
-
-function happy(x, y) {
-  begin(context);
-
-  context.moveTo(x - mouthSize, y + happyY);
-  context.lineTo(x + mouthSize, y + happyY);
-  stroke(context);
-
-  close(context);
-  begin(context);
-
-  context.arc(x, y + happyY, mouthSize, circleStart, 3.1);
-  stroke(context);
-
-  close(context);
-}
-
-var blankXY = size / 3;
+var blankXY = size / 2.5;
 
 function blank(x, y) {
   begin(context);
@@ -381,115 +327,110 @@ function leftTear(x, y) {
   close(context);
 }
 
+const emojiConfigs = {
+  1: (x, y) => {
+    eyes(x, y, "eye", "left");
+    eyes(x, y, "eye", "right");
+    mouth(x, y, "smile");
+  },
+  2: (x, y) => {
+    eyes(x, y, "eye", "left");
+    eyes(x, y, "blink", "right");
+    mouth(x, y, "smile");
+  },
+  3: (x, y) => {
+    eyes(x, y, "eye", "left");
+    eyes(x, y, "eye", "right");
+    mouth(x, y, "happy");
+  },
+  4: (x, y) => {
+    eyes(x, y, "blink", "left");
+    eyes(x, y, "blink", "right");
+    mouth(x, y, "smile");
+  },
+  5: (x, y) => {
+    eyes(x, y, "eye", "left");
+    eyes(x, y, "eye", "right");
+    mouth(x, y, "sad");
+  },
+  6: (x, y) => {
+    eyes(x, y, "eye", "left");
+    eyes(x, y, "eye", "right");
+    blank(x, y);
+  },
+  7: (x, y) => {
+    eyes(x, y, "sad", "left");
+    eyes(x, y, "sad", "right");
+    mouth(x, y, "sad");
+  },
+  8: (x, y) => {
+    eyes(x, y, "blink", "left");
+    eyes(x, y, "blink", "right");
+    mouth(x, y, "happy");
+  },
+  9: (x, y) => {
+    eyes(x, y, "eye", "left");
+    eyes(x, y, "blink", "right");
+    mouth(x, y, "smile");
+    tougue(x, y);
+  },
+  10: (x, y) => {
+    eyes(x, y, "blink", "left");
+    eyes(x, y, "blink", "right");
+    mouth(x, y, "smile");
+    sidetougue(x, y);
+  },
+  11: (x, y) => {
+    eyes(x, y, "blink", "left");
+    eyes(x, y, "blink", "right");
+    mouth(x, y, "happy");
+    leftLaughTear(x, y);
+    rightLaughTear(x, y);
+  },
+  12: (x, y) => {
+    eyes(x, y, "eye", "left");
+    eyes(x, y, "eye", "right");
+    o(x, y);
+  },
+  13: (x, y) => {
+    eyes(x, y, "half", "left");
+    eyes(x, y, "half", "right");
+    mouth(x, y, "sad");
+  },
+  14: (x, y) => {
+    eyes(x, y, "half", "left");
+    eyes(x, y, "half", "right");
+    mouth(x, y, "smile");
+  },
+  15: (x, y) => {
+    eyes(x, y, "extraSad", "left");
+    eyes(x, y, "extraSad", "right");
+    mouth(x, y, "sad");
+  },
+  16: (x, y) => {
+    eyes(x, y, "eye", "left");
+    eyes(x, y, "eye", "right");
+    mouth(x, y, "sad");
+    rightTear(x, y);
+  },
+};
+
+var id = 0;
+
 // Draw all emojis in a grid, centered
 for (let row = 0; row < rows; row++) {
   for (let col = 0; col < cols; col++) {
     let x = startX + col * emojiSizeSpace;
     let y = startY + row * emojiSizeSpace;
 
-    let leftEyeDisplay =
-      (row === 0 && col === 0) ||
-      (row === 0 && col === 1) ||
-      (row === 0 && col === 2) ||
-      (row === 1 && col === 0) ||
-      (row === 1 && col === 1) ||
-      (row === 2 && col === 0) ||
-      (row === 2 && col === 3) ||
-      (row === 3 && col === 3);
-
-    let rightEyeDisplay =
-      (row === 0 && col === 0) ||
-      (row === 0 && col === 2) ||
-      (row === 1 && col === 0) ||
-      (row === 1 && col === 1) ||
-      (row === 2 && col === 3) ||
-      (row === 3 && col === 3);
-
-    let rightEyeBlinkDisplay =
-      (row === 0 && col === 1) ||
-      (row === 0 && col === 3) ||
-      (row === 1 && col === 3) ||
-      (row === 2 && col === 0) ||
-      (row === 2 && col === 1) ||
-      (row === 2 && col === 2);
-
-    let leftEyeBlinkDisplay =
-      (row === 0 && col === 3) ||
-      (row === 1 && col === 3) ||
-      (row === 2 && col === 1) ||
-      (row === 2 && col === 2);
-
-    let rightSadEyeDisplay = row === 1 && col === 2;
-
-    let leftSadEyeDisplay = row === 1 && col === 2;
-
-    let rightHalfEyeDisplay =
-      (row === 3 && col === 0) || (row === 3 && col === 1);
-
-    let leftHalfEyeDisplay =
-      (row === 3 && col === 0) || (row === 3 && col === 1);
-
-    let rightExtraSadEyeDisplay = row === 3 && col === 2;
-
-    let leftExtraSadEyeDisplay = row === 3 && col === 2;
-
-    let smileDisplay =
-      (row === 0 && col === 0) ||
-      (row === 0 && col === 1) ||
-      (row === 0 && col === 3) ||
-      (row === 2 && col === 0) ||
-      (row === 2 && col === 1) ||
-      (row === 3 && col === 1);
-
-    let sadDisplay =
-      (row === 1 && col === 0) ||
-      (row === 1 && col === 2) ||
-      (row === 3 && col === 0) ||
-      (row === 3 && col === 2) ||
-      (row === 3 && col === 3);
-
-    let happyDisplay =
-      (row === 0 && col === 2) ||
-      (row === 1 && col === 3) ||
-      (row === 2 && col === 2);
-
-    let blankDisplay = row === 1 && col === 1;
-
-    let tougueDisplay = row === 2 && col === 0;
-
-    let sideTougueDisplay = row === 2 && col === 1;
-
-    let rightLaughTearDisplay = row === 2 && col === 2;
-
-    let leftLaughTearDisplay = row === 2 && col === 2;
-
-    let oDisplay = row === 2 && col === 3;
-
-    let rightTearDisplay = row === 3 && col === 3;
-
-    let leftTearDisplay;
-
+    id++;
     drawEmojiOutline(x, y);
-    if (leftEyeDisplay) leftEye(x, y);
-    if (rightEyeDisplay) rightEye(x, y);
-    if (rightEyeBlinkDisplay) rightEyeBlink(x, y);
-    if (leftEyeBlinkDisplay) leftEyeBlink(x, y);
-    if (rightSadEyeDisplay) rightSadEye(x, y);
-    if (leftSadEyeDisplay) leftSadEye(x, y);
-    if (rightHalfEyeDisplay) rightHalfEye(x, y);
-    if (leftHalfEyeDisplay) leftHalfEye(x, y);
-    if (rightExtraSadEyeDisplay) rightExtraSadEye(x, y);
-    if (leftExtraSadEyeDisplay) leftExtraSadEye(x, y);
-    if (smileDisplay) smile(x, y);
-    if (sadDisplay) sad(x, y);
-    if (happyDisplay) happy(x, y);
-    if (blankDisplay) blank(x, y);
-    if (tougueDisplay) tougue(x, y);
-    if (sideTougueDisplay) sidetougue(x, y);
-    if (rightLaughTearDisplay) rightLaughTear(x, y);
-    if (leftLaughTearDisplay) leftLaughTear(x, y);
-    if (oDisplay) o(x, y);
-    if (rightTearDisplay) rightTear(x, y);
-    if (leftTearDisplay) leftTear(x, y);
+    if (emojiConfigs[id]) {
+      emojiConfigs[id](x, y);
+    }
+
+    // if (configs[id]) {
+    //   configs[id](x, y);
+    // }
   }
 }
