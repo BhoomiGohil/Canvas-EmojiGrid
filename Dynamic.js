@@ -57,6 +57,7 @@ var eyeX = size / 2.6;
 var eyeY = size / 5;
 var eyeSize = size / 9;
 
+// Helper function to draw emojis eyes
 function eyes(x, y, eyeType, position) {
   begin(context);
 
@@ -113,6 +114,7 @@ var blankXY = size / 2.5;
 var oY = size / 2.5;
 var oSize = size / 5;
 
+// Helper function to draw emojis mouth expression
 function mouth(x, y, mouthType) {
   begin(context);
 
