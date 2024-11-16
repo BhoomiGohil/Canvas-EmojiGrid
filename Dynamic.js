@@ -53,12 +53,11 @@ function drawEmojiOutline(x, y) {
   close(context);
 }
 
-var eyeX = size / 2.6;
-var eyeY = size / 5;
-var eyeSize = size / 9;
-
 // Helper function to draw emojis eyes
 function eyes(x, y, eyeType, position) {
+  var eyeX = size / 2.6;
+  var eyeY = size / 5;
+  var eyeSize = size / 9;
   begin(context);
 
   var eyeArcStarts, eyeArcEnds, fillOrStroke;
@@ -106,16 +105,15 @@ function eyes(x, y, eyeType, position) {
   close(context);
 }
 
-var mouthY = 0;
-var mouthSize = size / 1.6;
-var sadY = size / 1;
-var happyY = size / 8;
-var blankXY = size / 2.5;
-var oY = size / 2.5;
-var oSize = size / 5;
-
 // Helper function to draw emojis mouth expression
 function mouth(x, y, mouthType) {
+  var mouthY = 0;
+  var mouthSize = size / 1.6;
+  var sadY = size / 1;
+  var happyY = size / 8;
+  var blankXY = size / 2.5;
+  var oY = size / 2.5;
+  var oSize = size / 5;
   begin(context);
 
   if (mouthType === "smile") {
@@ -146,13 +144,12 @@ function mouth(x, y, mouthType) {
   close(context);
 }
 
-var tougueMoveLineX = size / 5;
-var touguemoveY = size / 1.7;
-var tougueLineY = size / 1.4;
-var tougueY = size / 1.4;
-var tougueSize = size / 5;
-
 function tougue(x, y) {
+  var tougueMoveLineX = size / 5;
+  var touguemoveY = size / 1.7;
+  var tougueLineY = size / 1.4;
+  var tougueY = size / 1.4;
+  var tougueSize = size / 5;
   begin(context);
 
   context.moveTo(x + tougueMoveLineX, y + touguemoveY);
@@ -175,10 +172,11 @@ function tougue(x, y) {
   close(context);
 }
 
-var sideTougueX = size / 5;
-var sideTougueY = size / 1.7;
-
 function sidetougue(x, y) {
+  var sideTougueX = size / 5;
+  var sideTougueY = size / 1.7;
+  var tougueSize = size / 5;
+
   begin(context);
 
   context.arc(x + sideTougueX, y + sideTougueY, tougueSize, -0.5, 2.9);
@@ -187,130 +185,127 @@ function sidetougue(x, y) {
   close(context);
 }
 
-var laughTearMoveX = size / 2;
-var laughTearMoveY = size / 9;
-var laughTearLineX1 = size / 1;
-var laughTearLineY1 = size / 6;
-var laughTearLineX2 = size / 1.3;
-var laughTearLineY2 = size / 2.5;
+function laughTear(x, y, position) {
+  var laughTearMoveX = size / 2;
+  var laughTearMoveY = size / 9;
+  var laughTearLineX1 = size / 1;
+  var laughTearLineY1 = size / 6;
+  var laughTearLineX2 = size / 1.3;
+  var laughTearLineY2 = size / 2.5;
 
-var laughTearArcX = size / 1.1;
-var laughTearArcY = size / 3.2;
+  var laughTearArcX = size / 1.1;
+  var laughTearArcY = size / 3.2;
 
-var laughTearArcSize = size / 6;
-
-function rightLaughTear(x, y) {
+  var laughTearArcSize = size / 6;
   begin(context);
 
-  context.moveTo(x - laughTearMoveX, y - laughTearMoveY);
-  context.lineTo(x - laughTearLineX1, y + laughTearLineY1);
-  stroke(context);
+  if (position === "left") {
+    context.moveTo(x - laughTearMoveX, y - laughTearMoveY);
+    context.lineTo(x - laughTearLineX1, y + laughTearLineY1);
+    stroke(context);
 
-  close(context);
-  begin(context);
+    close(context);
+    begin(context);
 
-  context.moveTo(x - laughTearMoveX, y - laughTearMoveY);
-  context.lineTo(x - laughTearLineX2, y + laughTearLineY2);
-  stroke(context);
+    context.moveTo(x - laughTearMoveX, y - laughTearMoveY);
+    context.lineTo(x - laughTearLineX2, y + laughTearLineY2);
+    stroke(context);
 
-  close(context);
+    close(context);
 
-  begin(context);
+    begin(context);
 
-  context.arc(x - laughTearArcX, y + laughTearArcY, laughTearArcSize, 0.5, 4);
-  stroke(context);
+    context.arc(x - laughTearArcX, y + laughTearArcY, laughTearArcSize, 0.5, 4);
+    stroke(context);
+  } else if (position === "right") {
+    context.moveTo(x + laughTearMoveX, y - laughTearMoveY);
+    context.lineTo(x + laughTearLineX1, y + laughTearLineY1);
+    stroke(context);
 
-  close(context);
-}
+    close(context);
+    begin(context);
 
-function leftLaughTear(x, y) {
-  begin(context);
+    context.moveTo(x + laughTearMoveX, y - laughTearMoveY);
+    context.lineTo(x + laughTearLineX2, y + laughTearLineY2);
+    stroke(context);
 
-  context.moveTo(x + laughTearMoveX, y - laughTearMoveY);
-  context.lineTo(x + laughTearLineX1, y + laughTearLineY1);
-  stroke(context);
+    close(context);
+    begin(context);
 
-  close(context);
-  begin(context);
-
-  context.moveTo(x + laughTearMoveX, y - laughTearMoveY);
-  context.lineTo(x + laughTearLineX2, y + laughTearLineY2);
-  stroke(context);
-
-  close(context);
-  begin(context);
-
-  context.arc(x + laughTearArcX, y + laughTearArcY, laughTearArcSize, -1, 2.5);
-  stroke(context);
-
-  close(context);
-}
-
-var rightTearMoveX = size / 2;
-var rightTearMoveY = size / 10;
-
-var rightTearLineX1 = size / 1.5;
-var rightTearLineX2 = size / 3;
-var rightTearLineY = size / 3;
-
-var rightTearCircleX = size / 2;
-var rightTearCircleY = size / 3;
-var rigthTearCircleSize = size / 6;
-
-function rightTear(x, y) {
-  begin(context);
-
-  context.moveTo(x + rightTearMoveX, y - rightTearMoveY);
-  context.lineTo(x + rightTearLineX1, y + rightTearLineY);
-  stroke(context);
-
-  close(context);
-  begin(context);
-
-  context.moveTo(x + rightTearMoveX, y - rightTearMoveY);
-  context.lineTo(x + rightTearLineX2, y + rightTearLineY);
-  stroke(context);
-
-  close(context);
-  begin(context);
-
-  context.arc(
-    x + rightTearCircleX,
-    y + rightTearCircleY,
-    rigthTearCircleSize,
-    circleStart,
-    3.2
-  );
-  stroke(context);
+    context.arc(
+      x + laughTearArcX,
+      y + laughTearArcY,
+      laughTearArcSize,
+      -1,
+      2.5
+    );
+    stroke(context);
+  }
 
   close(context);
 }
 
-function leftTear(x, y) {
+function tear(x, y, position) {
+  var tearMoveX = size / 2;
+  var tearMoveY = size / 10;
+
+  var tearLineX1 = size / 1.5;
+  var tearLineX2 = size / 3;
+  var tearLineY = size / 3;
+
+  var tearCircleX = size / 2;
+  var tearCircleY = size / 3;
+  var tearCircleSize = size / 6;
+
   begin(context);
 
-  context.moveTo(x - rightTearMoveX, y - rightTearMoveY);
-  context.lineTo(x - rightTearLineX1, y + rightTearLineY);
-  stroke(context);
+  if (position === "left") {
+    context.moveTo(x - tearMoveX, y - tearMoveY);
+    context.lineTo(x - tearLineX1, y + tearLineY);
+    stroke(context);
 
-  close(context);
-  begin(context);
+    close(context);
+    begin(context);
 
-  context.moveTo(x - rightTearMoveX, y - rightTearMoveY);
-  context.lineTo(x - rightTearLineX2, y + rightTearLineY);
-  stroke(context);
+    context.moveTo(x - tearMoveX, y - tearMoveY);
+    context.lineTo(x - tearLineX2, y + tearLineY);
+    stroke(context);
 
-  close(context);
-  begin(context);
+    close(context);
+    begin(context);
 
-  context.arc(
-    x - rightTearCircleX,
-    y + rightTearCircleY,
-    rigthTearCircleSize,
-    circleStart,
-    3.2
-  );
-  stroke(context);
+    context.arc(
+      x - tearCircleX,
+      y + tearCircleY,
+      tearCircleSize,
+      circleStart,
+      3.2
+    );
+    stroke(context);
+  } else if (position === "right") {
+    context.moveTo(x + tearMoveX, y - tearMoveY);
+    context.lineTo(x + tearLineX1, y + tearLineY);
+    stroke(context);
+
+    close(context);
+    begin(context);
+
+    context.moveTo(x + tearMoveX, y - tearMoveY);
+    context.lineTo(x + tearLineX2, y + tearLineY);
+    stroke(context);
+
+    close(context);
+    begin(context);
+
+    context.arc(
+      x + tearCircleX,
+      y + tearCircleY,
+      tearCircleSize,
+      circleStart,
+      3.2
+    );
+    stroke(context);
+  }
 
   close(context);
 }
@@ -372,8 +367,8 @@ const emojiConfigs = {
     eyes(x, y, "blink", "left");
     eyes(x, y, "blink", "right");
     mouth(x, y, "happy");
-    leftLaughTear(x, y);
-    rightLaughTear(x, y);
+    laughTear(x, y, "left");
+    laughTear(x, y, "right");
   },
   12: (x, y) => {
     eyes(x, y, "eye", "left");
@@ -399,7 +394,7 @@ const emojiConfigs = {
     eyes(x, y, "eye", "left");
     eyes(x, y, "eye", "right");
     mouth(x, y, "sad");
-    rightTear(x, y);
+    tear(x, y, "right");
   },
 };
 
